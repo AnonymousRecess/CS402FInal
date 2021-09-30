@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="false"
+    android:clipChildren="false"
+    android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
         android:id="@+id/coffee_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Items Title"/>
+        android:text="Items Title" />
+
+    <CheckBox
+        android:id="@+id/cbSelect"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"
+        android:checked="false"
+        android:gravity="center_horizontal"
+        android:textAlignment="center" />
 
 </LinearLayout>
