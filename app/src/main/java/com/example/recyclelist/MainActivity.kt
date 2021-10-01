@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -43,7 +45,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         joinButton.setOnClickListener(this)
 
 
+
     }
+
 
     override fun onClick(p0: View?) {
         if (p0?.id == R.id.button) {
@@ -63,12 +67,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             alertDialog.show()
         }
         else {
+            val checked: CheckBox = findViewById(R.id.cbSelect)
             koffeeList.add(combindedList.toString())
            for (i in combindedList) {koffeeList.remove(i) }
-            kRecyclerView.adapter?.notifyDataSetChanged()
-            combindedList = arrayListOf<String>()
 
+            if(checked.isChecked)
+            {
+                checked.isChecked=false
+            }
+
+
+
+            kRecyclerView.adapter?.notifyDataSetChanged()
+
+            combindedList = arrayListOf<String>()
         }
     }
+
 
     }

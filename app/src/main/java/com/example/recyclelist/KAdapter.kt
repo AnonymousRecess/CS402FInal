@@ -13,6 +13,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
+
+
+
 var combindedList = arrayListOf<String>()
     class KAdapter(context: Context, var coffee: ArrayList<String>)
         : RecyclerView.Adapter<KAdapter.KoffeeHolder>() {
@@ -32,16 +35,19 @@ var combindedList = arrayListOf<String>()
         override fun getItemCount() = coffee.size
 
         override fun onBindViewHolder(holder: KoffeeHolder, position: Int) {
+            holder.setIsRecyclable(false)
             val acoffee = coffee[position]
             holder.apply {
                 titleTextView.text = acoffee
-
                 selected.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener() { buttonView, isChecked ->
                     if(isChecked) {
                         combindedList.add(coffee[position])
+
                         Log.d("RecycleList",combindedList.toString())
                     } else {
+
                         combindedList.remove(coffee[position])
+                        holder.selected.setChecked(false)
                         Log.d("RecycleList",combindedList.toString())
                     }
                 })
@@ -79,6 +85,7 @@ var combindedList = arrayListOf<String>()
                 //this@KoffeeHolder.getBindingAdapter()
                 //super.getBindingAdapter()
             }
+
 
 
 
