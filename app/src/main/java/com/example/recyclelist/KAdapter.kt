@@ -54,7 +54,7 @@ var combindedList = arrayListOf<String>()
             }
 
         }
-        class KoffeeHolder(v: View, parent: ViewGroup, coffee: ArrayList<String>) : RecyclerView.ViewHolder(v), View.OnClickListener{
+        class KoffeeHolder(v: View, parent: ViewGroup, coffee: ArrayList<String>) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener{
             val titleTextView: TextView = v.findViewById(R.id.coffee_name)
             val alertDialog = AlertDialog.Builder(parent.context)
             val selected: CheckBox =  v.findViewById(R.id.cbSelect)
@@ -63,6 +63,7 @@ var combindedList = arrayListOf<String>()
             init {
 
                 v.setOnClickListener(this)
+                v.setOnLongClickListener(this)
 
             }
             override fun onClick(v: View?) {
@@ -79,6 +80,7 @@ var combindedList = arrayListOf<String>()
 
             }
 
+
             fun onRemove(name: String) {
                 coffee2.remove(name)
                 this.bindingAdapter?.notifyDataSetChanged()
@@ -86,7 +88,21 @@ var combindedList = arrayListOf<String>()
                 //super.getBindingAdapter()
             }
 
+            override fun onLongClick(p0: View?): Boolean {
 
+                val first : String = titleTextView.text.toString().substring(0,titleTextView.text.toString().length/2)
+                val second : String = titleTextView.text.toString().substring(titleTextView.text.toString().length/2 ,titleTextView.text.toString().length)
+                Log.d("RecycleList", first)
+                Log.d("RecycleList", second)
+
+                coffee2.add(first)
+                coffee2.add(second)
+
+                onRemove(titleTextView.text.toString())
+
+
+                return true
+            }
 
 
         }
