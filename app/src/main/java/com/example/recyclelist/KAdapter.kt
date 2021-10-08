@@ -58,7 +58,7 @@ var combindedList = arrayListOf<String>()
             val titleTextView: TextView = v.findViewById(R.id.coffee_name)
             val alertDialog = AlertDialog.Builder(parent.context)
             val selected: CheckBox =  v.findViewById(R.id.cbSelect)
-            val coffee2 = coffee
+            val coffeeHold = coffee
 
             init {
 
@@ -67,12 +67,12 @@ var combindedList = arrayListOf<String>()
 
             }
             override fun onClick(v: View?) {
-                alertDialog.setTitle("Remove")
-                alertDialog.setMessage("Do you want to remove this item?")
+                alertDialog.setTitle("Removal of Item")
+                alertDialog.setMessage("Remove the Item?")
                 alertDialog.setPositiveButton("Yes",
                     DialogInterface.OnClickListener { dialog, id ->
                        onRemove(titleTextView.text.toString())
-                        Log.d("RecycleList",coffee2.toString())
+                        Log.d("RecycleList",coffeeHold.toString())
                         //super.getBindingAdapter()
                         //v?.invalidate()
                     })
@@ -82,7 +82,7 @@ var combindedList = arrayListOf<String>()
 
 
             fun onRemove(name: String) {
-                coffee2.remove(name)
+                coffeeHold.remove(name)
                 this.bindingAdapter?.notifyDataSetChanged()
                 //this@KoffeeHolder.getBindingAdapter()
                 //super.getBindingAdapter()
@@ -95,8 +95,8 @@ var combindedList = arrayListOf<String>()
                 Log.d("RecycleList", first)
                 Log.d("RecycleList", second)
 
-                coffee2.add(first)
-                coffee2.add(second)
+                coffeeHold.add(first)
+                coffeeHold.add(second)
 
                 onRemove(titleTextView.text.toString())
 
