@@ -1,11 +1,9 @@
 package com.example.recyclelist
 
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-var combindedList = arrayListOf<String>()
-    class KAdapter(context: Context, var coffee: ArrayList<String>)
+var combindedList = arrayListOf<KoffeeCup>()
+    class KAdapter(context: Context, var coffee: KoffeeModel)
         : RecyclerView.Adapter<KAdapter.KoffeeHolder>() {
 
 
@@ -30,7 +28,7 @@ var combindedList = arrayListOf<String>()
 
         }
 
-        fun getJoined(): ArrayList<String> = combindedList
+
 
         override fun getItemCount() = coffee.size
 
@@ -38,7 +36,7 @@ var combindedList = arrayListOf<String>()
             holder.setIsRecyclable(false)
             val acoffee = coffee[position]
             holder.apply {
-                titleTextView.text = acoffee
+                titleTextView.text = acoffee.name
                 selected.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener() { buttonView, isChecked ->
                     if(isChecked) {
                         combindedList.add(coffee[position])
@@ -54,7 +52,7 @@ var combindedList = arrayListOf<String>()
             }
 
         }
-        class KoffeeHolder(v: View, parent: ViewGroup, coffee: ArrayList<String>) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener{
+        class KoffeeHolder(v: View, parent: ViewGroup, coffee: ArrayList<KoffeeCup>) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener{
             val titleTextView: TextView = v.findViewById(R.id.coffee_name)
             val alertDialog = AlertDialog.Builder(parent.context)
             val selected: CheckBox =  v.findViewById(R.id.cbSelect)
@@ -82,7 +80,7 @@ var combindedList = arrayListOf<String>()
 
 
             fun onRemove(name: String) {
-                coffeeHold.remove(name)
+                coffeeHold.remove(KoffeeCup(name))
                 this.bindingAdapter?.notifyDataSetChanged()
                 //this@KoffeeHolder.getBindingAdapter()
                 //super.getBindingAdapter()
@@ -95,8 +93,8 @@ var combindedList = arrayListOf<String>()
                 Log.d("RecycleList", first)
                 Log.d("RecycleList", second)
 
-                coffeeHold.add(first)
-                coffeeHold.add(second)
+                coffeeHold.add(KoffeeCup(first))
+                coffeeHold.add(KoffeeCup(second))
 
                 onRemove(titleTextView.text.toString())
 

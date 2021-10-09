@@ -1,26 +1,24 @@
 package com.example.recyclelist
 
-import android.app.Dialog
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var kRecyclerView: RecyclerView
-    val koffeeList = arrayListOf<String>("Arabic", "Robusta","Sumatra","Kona")
+
+
+    val koffeeList = KoffeeModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,14 +59,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             alertDialog.setPositiveButton("ok",
                 DialogInterface.OnClickListener { dialog, id ->
                     enteredText = input.getText().toString()
-                    koffeeList.add(enteredText)
+                    koffeeList.add(KoffeeCup(enteredText))
                 })
             alertDialog.setView(input)
             alertDialog.show()
         }
         else {
             val checked: CheckBox = findViewById(R.id.cbSelect)
-            koffeeList.add(combindedList.toString())
+            koffeeList.add(KoffeeCup(combindedList.toString()))
            for (i in combindedList) {koffeeList.remove(i) }
 
             if(checked.isChecked)
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             kRecyclerView.adapter?.notifyDataSetChanged()
 
-            combindedList = arrayListOf<String>()
+
         }
     }
 
