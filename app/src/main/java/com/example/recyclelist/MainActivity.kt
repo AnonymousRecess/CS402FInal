@@ -59,14 +59,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             alertDialog.setPositiveButton("ok",
                 DialogInterface.OnClickListener { dialog, id ->
                     enteredText = input.getText().toString()
-                    koffeeList.add(KoffeeCup(enteredText))
+                    koffeeList.add(KoffeeCup(enteredText,false))
                 })
             alertDialog.setView(input)
             alertDialog.show()
         }
         else {
             val checked: CheckBox = findViewById(R.id.cbSelect)
-            koffeeList.add(KoffeeCup(combindedList.toString()))
+            koffeeList.add(KoffeeCup(combindedList.toString(), false))
+            // Testing here
+
+
+
            for (i in combindedList) {koffeeList.remove(i) }
 
             if(checked.isChecked)
