@@ -35,7 +35,7 @@ var combindedList = arrayListOf<KoffeeCup>()
         override fun getItemCount() = coffee.size
 
         override fun onBindViewHolder(holder: KoffeeHolder, position: Int) {
-            holder.setIsRecyclable(false)
+           holder.setIsRecyclable(false)
             val acoffee = coffee[position]
             holder.apply {
                 titleTextView.text = acoffee.name
@@ -90,7 +90,7 @@ var combindedList = arrayListOf<KoffeeCup>()
 
             fun onRemove(name: String) {
                 coffeeHold.remove(KoffeeCup(name, false))
-                this.bindingAdapter?.notifyDataSetChanged()
+              //  this.bindingAdapter?.notifyDataSetChanged()
                 //this@KoffeeHolder.getBindingAdapter()
                 //super.getBindingAdapter()
             }
