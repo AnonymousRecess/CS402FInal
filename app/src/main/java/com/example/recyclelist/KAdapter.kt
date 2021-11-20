@@ -10,8 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-
-
+import com.bumptech.glide.Glide
 
 
 var combindedList = arrayListOf<KoffeeCup>()
@@ -37,15 +36,18 @@ var combindedList = arrayListOf<KoffeeCup>()
         override fun onBindViewHolder(holder: KoffeeHolder, position: Int) {
            holder.setIsRecyclable(false)
             val acoffee = coffee[position]
+            val imageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Boise_State_%22B%22_logo.svg/1200px-Boise_State_%22B%22_logo.svg.png"
+            Glide.with(holder.itemView.getContext()).load(imageURL).into(holder.imageView)
             holder.apply {
                 titleTextView.text = acoffee.name
-                var kSelect = acoffee.selection
-                if (kSelect)
-                {
-                    holder.selected.setChecked(true)
-                    combindedList.add(coffee[position])
 
-                }
+//                var kSelect = acoffee.selection
+//                if (kSelect)
+//                {
+//                    holder.selected.setChecked(true)
+//                    combindedList.add(coffee[position])
+//
+//                }
 //                selected.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener() { buttonView, isChecked ->
 //                    if(isChecked) {
 //                        combindedList.add(coffee[position])
@@ -57,14 +59,19 @@ var combindedList = arrayListOf<KoffeeCup>()
 //                        holder.selected.setChecked(false)
 //                        Log.d("RecycleList",combindedList.toString())
 //                    }
-//                })
             }
 
         }
         class KoffeeHolder(v: View, parent: ViewGroup, coffee: ArrayList<KoffeeCup>) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener{
-            val titleTextView: TextView = v.findViewById(R.id.coffee_name)
+            val titleTextView: TextView = v.findViewById(R.id.coffee_name) //TODO: Rename this to title
+            val imageView: ImageView = v.findViewById(R.id.imageView)
+            //TODO: Add more properties to the item_view.xml
+            //TODO: Add a url property to the KoffeeModel and consume that in the onBindViewAdapter instead of the hard coded url
+            //val descriptionTextView: TextView = v.findViewById(R.id.description) //Possibly rename to description??
+            //val tagsTextView: TextView = v.findViewById(R.id.tags)
+            //val dateTextView: TextView = v.findViewById(R.id.date)
             val alertDialog = AlertDialog.Builder(parent.context)
-            val selected: CheckBox =  v.findViewById(R.id.cbSelect)
+
             val coffeeHold = coffee
 
             init {
