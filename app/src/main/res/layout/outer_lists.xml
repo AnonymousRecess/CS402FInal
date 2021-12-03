@@ -4,26 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".OuterLists">
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inner_recycler_view"
+        android:id="@+id/outer_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="-44dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
-
-    <Button
-        android:id="@+id/inAddButton"
-        android:layout_width="51dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="348dp"
-        android:text="+"
-        app:cornerRadius="100px"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

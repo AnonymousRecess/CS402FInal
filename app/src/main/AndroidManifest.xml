@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycleList">
         <activity
-            android:name=".MainActivity"
+            android:name=".OuterLists"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
