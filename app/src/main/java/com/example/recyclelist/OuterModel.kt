@@ -1,4 +1,5 @@
 package com.example.recyclelist
-
-class OuterModel {
+public data class innerLists(var name:String)
+class OuterModel: ArrayList<innerLists>() {
+    
 }

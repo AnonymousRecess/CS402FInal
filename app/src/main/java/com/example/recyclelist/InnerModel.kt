@@ -11,4 +11,4 @@ public class InnerModel: ArrayList<innerListElements>() {
            }
 
     }
-}: A
+}

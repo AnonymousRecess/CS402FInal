@@ -22,7 +22,7 @@ class OuterLists : AppCompatActivity(), View.OnClickListener {
 
         outRecyclerView.adapter = outadapter
         // i.d of button = button
-        val innerAddButton: Button = findViewById(R.id.inAddButton)
+        val innerAddButton: Button = findViewById(R.id.outAddButton) // TODO Add out add button
 
 
         innerAddButton.setOnClickListener(this)
