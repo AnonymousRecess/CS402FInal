@@ -1,10 +1,12 @@
 package com.example.recyclelist
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -23,9 +25,13 @@ class OUTAdapter(context: Context, var outerArray: OuterModel)
             v.setOnClickListener(this)
 
         }
-        override fun onClick(v: View?) {
-           
+        override fun onClick(v: View) {
+            val name = outHold[bindingAdapterPosition].name
+            val switchActivityIntent  = Intent(v.getContext(), InnerLists::class.java).apply {
+                putExtra("listTitle", name)
 
+           }
+            v.getContext().startActivity(switchActivityIntent)
         }
 
 

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class OuterLists : AppCompatActivity(), View.OnClickListener {
+public class OuterLists : AppCompatActivity(), View.OnClickListener {
     private lateinit var outRecyclerView: RecyclerView
     val outerList = OuterModel() //TODO Create OuterModel class
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +23,13 @@ class OuterLists : AppCompatActivity(), View.OnClickListener {
         outRecyclerView.adapter = outadapter
         // i.d of button = button
         val innerAddButton: Button = findViewById(R.id.outAddButton) // TODO Add out add button
-
+        
 
         innerAddButton.setOnClickListener(this)
     }
         override fun onClick(p0: View?) {
             TODO("Not yet implemented")
+           
         }
     
 }

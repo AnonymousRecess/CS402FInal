@@ -1,8 +1,8 @@
 package com.example.recyclelist
 import kotlin.collections.ArrayList
-public data class innerLists(var name:String)
-class OuterModel: ArrayList<innerLists>() {
+public data class outerListElements(var name:String)
+class OuterModel: ArrayList<outerListElements>() {
     init {
-        add(innerLists("Title"))
+        add(outerListElements("Title"))
     }
 }

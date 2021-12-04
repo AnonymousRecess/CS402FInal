@@ -7,7 +7,7 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class InnerLists : AppCompatActivity(), View.OnClickListener {
+public class InnerLists : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var inRecyclerView: RecyclerView
 
