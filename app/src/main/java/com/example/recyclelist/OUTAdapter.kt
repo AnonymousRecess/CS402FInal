@@ -1,20 +1,18 @@
 package com.example.recyclelist
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class OUTAdapter(context: Context, var outerArray: OuterModel)
     : RecyclerView.Adapter<OUTAdapter.OuterHolder>() {
 
-    class OuterHolder(v: View, parent: ViewGroup, outItem: ArrayList<innerListElements>) : RecyclerView.ViewHolder(v), View.OnClickListener{
-        val titleTextView: TextView = v.findViewById(R.id.coffee_name) //TODO: Rename this to title
+    class OuterHolder(v: View, parent: ViewGroup, outItem: OuterModel) : RecyclerView.ViewHolder(v), View.OnClickListener{
+        val titleTextView: TextView = v.findViewById(R.id.listTitle) //TODO: Rename this to title
         
 
 
@@ -42,14 +40,17 @@ class OUTAdapter(context: Context, var outerArray: OuterModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OuterHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.lists_view, parent, false)
+        return OuterHolder(view, parent, outerArray)
     }
 
     override fun onBindViewHolder(holder: OuterHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.setIsRecyclable(false)
+        val outerListItem = outerArray[position]
+        holder.apply {
+            titleTextView.text = outerListItem.name
+        }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = outerArray.size
 }

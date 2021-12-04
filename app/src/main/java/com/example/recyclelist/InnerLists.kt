@@ -7,7 +7,7 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class InnerLists : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var inRecyclerView: RecyclerView
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.inner_lists)
 
         inRecyclerView =
             findViewById<RecyclerView>(R.id.inner_recycler_view)
