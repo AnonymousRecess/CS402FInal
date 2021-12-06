@@ -32,6 +32,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
         innerAddButton.setOnClickListener(this)
 
 
+        setTitle(intent.getStringExtra("listTitle"))
 
 
 

@@ -1,5 +1,6 @@
 package com.example.recyclelist
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,16 +28,19 @@ class ListFragment : DialogFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//      //  super.requestFeature()
-//        //requestFeature()
-//        setView(R.layout.)
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+      //  super.requestFeature()
+        //requestFeature()
+       // AppCompatActivity.
+       // setView(R.layout.)
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             return activity?.let {
@@ -42,7 +48,6 @@ class ListFragment : DialogFragment() {
                 val builder = AlertDialog.Builder(it)
                 //Get the layout inflator
                 val inflator = layoutInflater
-                bui
                 builder.setMessage("Create a new List")//.setView(inflator.inflate(R.layout.fragment_list,null))
                         .setPositiveButton("Create",
                                 DialogInterface.OnClickListener { dialog, id ->
@@ -50,8 +55,9 @@ class ListFragment : DialogFragment() {
                                 })
                         .setNegativeButton("Cancel",
                                 DialogInterface.OnClickListener { dialog, id ->
-                                    getDialog()?.cancel()
+                                    dialog.cancel()
                                 })
+                builder.setView(layoutInflater.inflate(R.layout.fragment_list, null))
                 // Create the AlertDialog object and return it
                 builder.create()
             } ?: throw IllegalStateException("Activity cannot be null")
