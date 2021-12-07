@@ -9,11 +9,12 @@ public class InnerModel: ArrayList<innerListElements>(){
 
     init {
 
+           val df = SimpleDateFormat("mm/dd/yyyy")
            for  (i in 0..4)
            {
-               val df = SimpleDateFormat("dd/mm/yyyy")
                add(innerListElements("Title","https://static.wikia.nocookie.net/leagueoflegends/images/c/c8/04MT005-full.png/revision/latest/scale-to-width-down/1200?cb=20210427042138","description","tag",df.parse("11/9/2001")!!))
            }
+           add(innerListElements("Title","https://static.wikia.nocookie.net/leagueoflegends/images/c/c8/04MT005-full.png/revision/latest/scale-to-width-down/1200?cb=20210427042138","temp","tag",df.parse("12/9/2001")!!))
 
     }
 }

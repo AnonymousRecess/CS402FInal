@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 import java.util.*
 
 public class InnerLists : AppCompatActivity(), View.OnClickListener {
@@ -17,7 +18,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
 
 
     val innerList = InnerModel()
-    var displayList = mutableListOf<String>()
+    val displayList = InnerModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,21 +28,21 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
             findViewById<RecyclerView>(R.id.inner_recycler_view)
         inRecyclerView.layoutManager = LinearLayoutManager(this)
 
-         val inadapter: INAdapter  = INAdapter(this, innerList)
+        val inadapter: INAdapter = INAdapter(this, displayList)
 
         inRecyclerView.adapter = inadapter
         // i.d of button = button
         val innerAddButton: Button = findViewById(R.id.inAddButton)
 
-        
+
         innerAddButton.setOnClickListener(this)
 
 
         setTitle(intent.getStringExtra("listTitle"))
 
 
-
     }
+
     override fun onClick(p0: View?) {
 
     }
@@ -50,7 +51,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
         menuInflater.inflate(R.menu.main_menu, menu)
         var item: MenuItem = menu!!.findItem(R.id.action_search)
 
-        if(item != null) {
+        if (item != null) {
             var searchView = item.actionView as SearchView
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -62,17 +63,18 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
                     if (newText!!.isNotEmpty()) {
                         displayList.clear()
                         var search = newText.lowercase(Locale.getDefault())
-
-                        for (list in innerList.listIterator().toString()) {
-                            if (list.lowercase(Locale.getDefault()).contains(search)) {
-                                displayList.add(list.toString())
+                        val df = SimpleDateFormat("mm/dd/yyyy")
+                        for (list:innerListElements in innerList) {
+                            if (list.itemTitle.contains(search, true) || list.description.contains(search, true) ||  list.tag.contains(search,
+                            true) || df.format(list.date).contains(search, true)) {
+                                displayList.add(list)
                             }
-                            inRecyclerView.adapter?.notifyDataSetChanged()
                         }
+                        inRecyclerView.adapter!!.notifyDataSetChanged()
                     } else {
                         displayList.clear()
-                        displayList.addAll(innerListElements)
-                        inRecyclerView.adapter?.notifyDataSetChanged()
+                        displayList.addAll(innerList)
+                        inRecyclerView.adapter!!.notifyDataSetChanged()
 
                     }
                     return true
@@ -82,6 +84,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
             })
         }
         return super.onCreateOptionsMenu(menu)
+    }
 }
 
 
