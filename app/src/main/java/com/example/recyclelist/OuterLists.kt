@@ -3,16 +3,21 @@ package com.example.recyclelist
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.View.inflate
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 import java.util.zip.Inflater
 
 public class OuterLists : AppCompatActivity(), View.OnClickListener {
@@ -63,5 +68,7 @@ public class OuterLists : AppCompatActivity(), View.OnClickListener {
 
             dialog.dismiss()
         }
+
+  
     
 }
