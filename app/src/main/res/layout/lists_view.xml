@@ -5,31 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
     <TextView
         android:id="@+id/listTitle"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/rectangle"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#FCFAFA" />
-
+        android:textAlignment="center"
+        android:textColor="#FCFAFA"
+        app:autoSizeTextType="uniform" />
 
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/listTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="end"
+        android:scaleX="2"
+        android:scaleY="2"
         app:srcCompat="@drawable/arrow_right" />
 
 

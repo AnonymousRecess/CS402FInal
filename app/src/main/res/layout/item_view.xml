@@ -7,7 +7,7 @@
     android:clickable="false"
     android:clipChildren="false"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/inner_item_title"
@@ -18,15 +18,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="129dp"
+        android:layout_height="120dp"
         android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/itemDescription"
-        android:layout_width="257dp"
-        android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="280dp"
+        android:layout_height="102dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/imageView"
         android:text="Description"
@@ -36,18 +35,30 @@
         android:id="@+id/dateTextView"
         android:layout_width="81dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
+        android:layout_below="@id/itemDescription"
+        android:layout_alignLeft="@id/itemDescription"
+        android:layout_toRightOf="@id/imageView"
         android:text="Date"
         android:textColor="#FCFAFA" />
 
     <TextView
         android:id="@+id/tagView"
-        android:layout_width="103dp"
+        android:layout_width="81dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_toRightOf="@+id/imageView"
-        android:text="Tags"
+        android:layout_alignEnd="@id/itemDescription"
+        android:layout_below="@id/itemDescription"
+        android:layout_toRightOf="@id/dateTextView"
+        android:text="Tags: "
+        android:background="@drawable/rectangle"
+        android:paddingLeft="10dp"
         android:textColor="#FEFBFB" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="#08BCF4"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/imageView"/>
 
 
 </RelativeLayout>
