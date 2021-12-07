@@ -17,8 +17,10 @@
         android:layout_height="30dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="32dp"
-        android:gravity ="center"
-        android:text="TextView" />
+        android:background="@drawable/rectangle"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FCFAFA" />
 
 
 

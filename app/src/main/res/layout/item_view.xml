@@ -13,7 +13,8 @@
         android:id="@+id/inner_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Items Title" />
+        android:text="Items Title"
+        android:textColor="#FFFFFF" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,14 +29,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/imageView"
-        android:text="Description" />
+        android:text="Description"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="81dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
-        android:text="Date" />
+        android:text="Date"
+        android:textColor="#FCFAFA" />
 
     <TextView
         android:id="@+id/tagView"
@@ -43,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:layout_toRightOf="@+id/imageView"
-        android:text="Tags" />
+        android:text="Tags"
+        android:textColor="#FEFBFB" />
 
 
 </RelativeLayout>

@@ -41,6 +41,7 @@ public class OuterLists : AppCompatActivity(), View.OnClickListener {
         
 
         outerAddButton.setOnClickListener(this)
+        setTitle("Lists++")
     }
         override fun onClick(p0: View?) {
             //TODO("Not yet implemented")
