@@ -23,7 +23,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
     private lateinit var alertDialog:AlertDialog
 
     val innerList = InnerModel()
-    var displayList = InnerModel()
+    val displayList = InnerModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +69,11 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
         val descriptionTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerDescription)
         val tagTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerTag)
 
-        innerList.add(innerListElements(titleTextBox?.getText().toString(), urlTextBox?.getText().toString(), descriptionTextBox?.getText().toString(), tagTextBox?.getText().toString(), Date()))
-        displayList = innerList
-        inRecyclerView.adapter?.notifyDataSetChanged()
+        val newElement = innerListElements(titleTextBox?.getText().toString(), urlTextBox?.getText().toString(), descriptionTextBox?.getText().toString(), tagTextBox?.getText().toString(), Date())
+        innerList.add(newElement)
+        displayList.add(newElement)
+
+        inRecyclerView.adapter!!.notifyDataSetChanged()
 
         dialog.dismiss()
     }

@@ -10,7 +10,8 @@
         android:id="@+id/listDialogInnerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:hint="Title"/>
 
 
     <EditText
@@ -19,20 +20,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/listDialogInnerTitle"
         android:layout_marginTop="50dp"
-        android:inputType="text" />
+        android:inputType="text"
+        android:hint="URL"/>
 
     <EditText
         android:id="@+id/listDialogInnerDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:inputType="text" />
+        android:inputType="text"
+        android:hint="Description"/>
 
     <EditText
         android:id="@+id/listDialogInnerTag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:inputType="text" />
+        android:inputType="text"
+        android:hint="Tag"/>
 
 </FrameLayout>
