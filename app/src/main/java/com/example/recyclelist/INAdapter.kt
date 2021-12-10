@@ -15,7 +15,8 @@ import java.text.SimpleDateFormat
 
 
 var combindedList = arrayListOf<innerListElements>()
-
+private lateinit var addDialog: androidx.appcompat.app.AlertDialog
+private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
 
     class INAdapter(context: Context, var innerArray: InnerModel)
         : RecyclerView.Adapter<INAdapter.InnerHolder>() {
@@ -38,7 +39,7 @@ var combindedList = arrayListOf<innerListElements>()
             val innerListItem = innerArray[position]
             //val imageURL = "https://static.wikia.nocookie.net/leagueoflegends/images/c/c8/04MT005-full.png/revision/latest/scale-to-width-down/1200?cb=20210427042138"
             Glide.with(holder.itemView.getContext()).load(innerListItem.imageUrl).into(holder.imageView)
-            val df = SimpleDateFormat("mm/dd/yyyy")
+            val df = SimpleDateFormat("MM/dd/yyyy")
             holder.apply {
                 titleTextView.text = innerListItem.itemTitle
                 dateTextView.text = df.format(innerListItem.date)
@@ -47,7 +48,8 @@ var combindedList = arrayListOf<innerListElements>()
             }
 
         }
-        class InnerHolder(v: View, parent: ViewGroup, inItem: ArrayList<innerListElements>) : RecyclerView.ViewHolder(v), View.OnClickListener{
+        inner class InnerHolder(v: View, parent: ViewGroup, inItem: ArrayList<innerListElements>) : RecyclerView.ViewHolder(v), View.OnClickListener,
+        View.OnLongClickListener{
             val titleTextView: TextView = v.findViewById(R.id.inner_item_title) //TODO: Rename this to title
             val imageView: ImageView = v.findViewById(R.id.imageView)
             //TODO: Add more properties to the item_view.xml    DONE
@@ -55,26 +57,26 @@ var combindedList = arrayListOf<innerListElements>()
             val descriptionTextView: TextView = v.findViewById(R.id.itemDescription) //Possibly rename to description??
             val dateTextView: TextView = v.findViewById(R.id.dateTextView)
             val tagTextView: TextView = v.findViewById(R.id.tagView)
-            val alertDialog = AlertDialog.Builder(parent.context)
-
+            val addDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(parent.context)
 
             val inHold = inItem
 
             init {
 
                 v.setOnClickListener(this)
-//                v.setOnLongClickListener(this)
+                v.setOnLongClickListener(this)
 
             }
             override fun onClick(v: View?) {
-                alertDialog.setTitle("Removal of Item")
-                alertDialog.setMessage("Remove the Item?")
-                alertDialog.setPositiveButton("Yes",
-                    DialogInterface.OnClickListener { dialog, id ->
-                       onRemove(titleTextView.text.toString())
-                        Log.d("RecycleList",inHold.toString())
-                    })
-                alertDialog.show()
+//                addDialogBuilder.setTitle("Removal of Item")
+//                addDialogBuilder.setMessage("Remove the Item?")
+//                addDialogBuilder.setPositiveButton("Yes",
+//                    DialogInterface.OnClickListener { dialog, id ->
+//                       onRemove(titleTextView.text.toString())
+//                        Log.d("RecycleList",inHold.toString())
+//                    })
+//                addDialog = addDialogBuilder.create()
+//                addDialog.show()
 
             }
 
@@ -84,24 +86,35 @@ var combindedList = arrayListOf<innerListElements>()
 
             }
 
-//            override fun onLongClick(p0: View?): Boolean {
-//
-//                val first : String = titleTextView.text.toString().substring(0,titleTextView.text.toString().length/2)
-//                val second : String = titleTextView.text.toString().substring(titleTextView.text.toString().length/2 ,titleTextView.text.toString().length)
-//                Log.d("RecycleList", first)
-//                Log.d("RecycleList", second)
-//
-//                inHold.add(innerListElements(first, false))
-//                inHold.add(innerListElements(second, false))
-//
-//                onRemove(titleTextView.text.toString())
-//
-//
-//                return true
-//            }
+            override fun onLongClick(p0: View?): Boolean {
 
+                showRemoveInnerDialog("Remove an item from the list?", p0, bindingAdapterPosition)
+
+
+
+
+                //inHold.removeAt()
+
+                return true
+            }
+            private fun showRemoveInnerDialog(title: String, p0: View?, position: Int){
+
+                val dialogBuilder = androidx.appcompat.app.AlertDialog.Builder(p0!!.getContext())
+                    .setMessage(title)
+                    .setPositiveButton("Confirm", DialogInterface.OnClickListener{ dialog, id-> removeItem(position)})
+                    .setNegativeButton("Cancel", DialogInterface.OnClickListener{ dialog, id -> dialog.cancel()})
+
+                removeDialog = dialogBuilder.create()
+                removeDialog.show()
+            }
+
+            private fun removeItem(bindingPos: Int){
+                    innerArray.removeAt(bindingPos)
+                    notifyDataSetChanged()
+            }
 
         }
+
 
 
     }
