@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.collections.ArrayList
 
-public data class innerListElements(var itemTitle: String, var imageUrl: String, var description:String, var tag:String,var date: Date)
+public data class innerListElements(var itemTitle : String, var imageUrl : String, var description : String, var tag : String, var date : Date)
 public class InnerModel: ArrayList<innerListElements>(){
 
     init {

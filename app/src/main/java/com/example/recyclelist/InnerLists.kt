@@ -1,24 +1,29 @@
 package com.example.recyclelist
 
+import android.app.Dialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 public class InnerLists : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var inRecyclerView: RecyclerView
 
+    private lateinit var alertDialog:AlertDialog
 
     val innerList = InnerModel()
-    val displayList = InnerModel()
+    var displayList = InnerModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +49,33 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+        showInnerDialog("Create a new Item")
 
     }
+    private fun showInnerDialog(title: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage(title).setView(layoutInflater.inflate(R.layout.fragment_elements, null))
+            .setPositiveButton("Confirm", DialogInterface.OnClickListener{ dialog, id-> addItem(
+                dialog as Dialog)})
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener{ dialog, id -> dialog.cancel()})
+
+        alertDialog = dialogBuilder.create()
+        alertDialog.show()
+    }
+    fun addItem(dialog: Dialog){
+
+        val titleTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerTitle)
+        val urlTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerURL)
+        val descriptionTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerDescription)
+        val tagTextBox = alertDialog.findViewById<EditText>(R.id.listDialogInnerTag)
+
+        innerList.add(innerListElements(titleTextBox?.getText().toString(), urlTextBox?.getText().toString(), descriptionTextBox?.getText().toString(), tagTextBox?.getText().toString(), Date()))
+        displayList = innerList
+        inRecyclerView.adapter?.notifyDataSetChanged()
+
+        dialog.dismiss()
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
