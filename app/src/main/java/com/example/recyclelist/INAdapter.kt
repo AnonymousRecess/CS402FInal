@@ -19,6 +19,7 @@ import android.widget.LinearLayout
 private lateinit var addDialog: androidx.appcompat.app.AlertDialog
 private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
 private lateinit var tagDialog:androidx.appcompat.app.AlertDialog
+private lateinit var descDialog:androidx.appcompat.app.AlertDialog
 private var isImageFitToScreen: Boolean = false
 
 
@@ -71,6 +72,7 @@ private var isImageFitToScreen: Boolean = false
                 v.setOnClickListener(this)
                 v.setOnLongClickListener(this)
                 tagTextView.setOnClickListener {buildDialog(tagTextView)}
+                descriptionTextView.setOnClickListener{buildDescDialog(descriptionTextView)}
 
 
             }
@@ -85,6 +87,17 @@ private var isImageFitToScreen: Boolean = false
                     tagDialog = dialogBuild.create()
                 tagDialog.show()
             }
+            fun buildDescDialog(p0: TextView) {
+                showDescDialog("Description", p0)
+            }
+           fun showDescDialog(title: String, p0: View?) {
+               val dialogBuild = androidx.appcompat.app.AlertDialog.Builder(p0!!.getContext())
+                   .setTitle(title)
+                   .setMessage(innerDisplayArray.get(bindingAdapterPosition).description)
+                   .setPositiveButton("OK", null)
+                    descDialog = dialogBuild.create()
+               descDialog.show()
+           }
 
             fun showImage(){
                 if(isImageFitToScreen) {
