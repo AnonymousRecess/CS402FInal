@@ -47,20 +47,22 @@
         android:id="@+id/tagView"
         android:layout_width="81dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/itemDescription"
+        android:layout_above="@id/border"
         android:layout_below="@id/itemDescription"
+        android:layout_alignEnd="@id/itemDescription"
         android:layout_toRightOf="@id/dateTextView"
-        android:text="Tags: "
         android:background="@drawable/rectangle"
         android:paddingLeft="10dp"
+        android:text="Tags: "
         android:textColor="#FEFBFB" />
 
     <View
+        android:id="@+id/border"
         android:layout_width="wrap_content"
         android:layout_height="2dp"
-        android:background="#08BCF4"
+        android:layout_below="@id/imageView"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/imageView"/>
+        android:background="#08BCF4" />
 
 
 </RelativeLayout>

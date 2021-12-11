@@ -69,6 +69,7 @@ private var isImageFitToScreen: Boolean = false
                 v.setOnClickListener(this)
                 v.setOnLongClickListener(this)
 
+
             }
 
             fun showImage(){
