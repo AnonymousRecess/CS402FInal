@@ -33,7 +33,7 @@ public class InnerLists : AppCompatActivity(), View.OnClickListener {
             findViewById<RecyclerView>(R.id.inner_recycler_view)
         inRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        val inadapter: INAdapter = INAdapter(this, displayList)
+        val inadapter: INAdapter = INAdapter(this, displayList, innerList)
 
         inRecyclerView.adapter = inadapter
         // i.d of button = button

@@ -1,6 +1,7 @@
 package com.example.recyclelist
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,10 @@ import com.bumptech.glide.Glide
 class OUTAdapter(context: Context, var outerArray: OuterModel)
     : RecyclerView.Adapter<OUTAdapter.OuterHolder>() {
 
-    class OuterHolder(v: View, parent: ViewGroup, outItem: OuterModel) : RecyclerView.ViewHolder(v), View.OnClickListener{
+    inner class OuterHolder(v: View, parent: ViewGroup, outItem: OuterModel) : RecyclerView.ViewHolder(v), View.OnClickListener, View
+    .OnLongClickListener{
         val titleTextView: TextView = v.findViewById(R.id.listTitle) //TODO: Rename this to title
-        
+        private lateinit var removeOutDialog: androidx.appcompat.app.AlertDialog
 
 
         val outHold = outItem
@@ -23,6 +25,7 @@ class OUTAdapter(context: Context, var outerArray: OuterModel)
         init {
 
             v.setOnClickListener(this)
+            v.setOnLongClickListener(this)
 
         }
         override fun onClick(v: View) {
@@ -40,7 +43,23 @@ class OUTAdapter(context: Context, var outerArray: OuterModel)
 
         }
 
-       
+        override fun onLongClick(p0: View?): Boolean {
+            showRemoveOuterDialog("Remove List?", p0, bindingAdapterPosition)
+                    return true
+        }
+        private fun showRemoveOuterDialog(title: String, p0: View?, position: Int) {
+            val dialogBuilder = androidx.appcompat.app.AlertDialog.Builder(p0!!.getContext())
+                .setMessage(title)
+                .setPositiveButton("Confirm", DialogInterface.OnClickListener{ dialog, id-> removeList(position)})
+                .setNegativeButton("Cancel", DialogInterface.OnClickListener{ dialog, id -> dialog.cancel()})
+
+            removeOutDialog = dialogBuilder.create()
+            removeOutDialog.show()
+        }
+        private fun removeList(bindingPos: Int){
+            outerArray.removeAt(bindingPos)
+            notifyDataSetChanged()
+        }
 
 
     }

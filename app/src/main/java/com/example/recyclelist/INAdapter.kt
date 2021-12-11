@@ -1,10 +1,8 @@
 package com.example.recyclelist
 
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,31 +10,36 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
+import android.widget.LinearLayout
 
 
-var combindedList = arrayListOf<innerListElements>()
+
+
+
 private lateinit var addDialog: androidx.appcompat.app.AlertDialog
 private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
+private var isImageFitToScreen: Boolean = false
 
-    class INAdapter(context: Context, var innerArray: InnerModel)
+
+    class INAdapter(context: Context, var innerDisplayArray: InnerModel, var innerArray: InnerModel)
         : RecyclerView.Adapter<INAdapter.InnerHolder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
                 : INAdapter.InnerHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
-            return InnerHolder(view, parent, innerArray)
+            return InnerHolder(view, parent, innerDisplayArray)
 
 
         }
 
 
 
-        override fun getItemCount() = innerArray.size
+        override fun getItemCount() = innerDisplayArray.size
 
         override fun onBindViewHolder(holder: InnerHolder, position: Int) {
             holder.setIsRecyclable(false)
-            val innerListItem = innerArray[position]
+            val innerListItem = innerDisplayArray[position]
             //val imageURL = "https://static.wikia.nocookie.net/leagueoflegends/images/c/c8/04MT005-full.png/revision/latest/scale-to-width-down/1200?cb=20210427042138"
             Glide.with(holder.itemView.getContext()).load(innerListItem.imageUrl).into(holder.imageView)
             val df = SimpleDateFormat("MM/dd/yyyy")
@@ -62,11 +65,28 @@ private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
             val inHold = inItem
 
             init {
-
+                imageView.setOnClickListener {showImage()}
                 v.setOnClickListener(this)
                 v.setOnLongClickListener(this)
 
             }
+
+            fun showImage(){
+                if(isImageFitToScreen) {
+                    isImageFitToScreen = false;
+                    imageView.setLayoutParams(RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT), );
+                    imageView.setAdjustViewBounds(true);
+                }
+                else{
+                    isImageFitToScreen = true
+                    imageView.layoutParams =
+                        RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.MATCH_PARENT)
+                    imageView.scaleType = ImageView.ScaleType.FIT_XY
+                }
+            }
+
             override fun onClick(v: View?) {
 //                addDialogBuilder.setTitle("Removal of Item")
 //                addDialogBuilder.setMessage("Remove the Item?")
@@ -81,10 +101,7 @@ private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
             }
 
 
-            fun onRemove(name: String) {
-//                inHold.remove(innerListElements(name, false))
 
-            }
 
             override fun onLongClick(p0: View?): Boolean {
 
@@ -108,8 +125,11 @@ private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
                 removeDialog.show()
             }
 
+
             private fun removeItem(bindingPos: Int){
-                    innerArray.removeAt(bindingPos)
+                    innerArray.remove(innerDisplayArray.get(bindingPos))
+                    innerDisplayArray.removeAt(bindingPos)
+
                     notifyDataSetChanged()
             }
 
