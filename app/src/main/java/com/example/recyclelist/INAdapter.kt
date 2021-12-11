@@ -18,6 +18,7 @@ import android.widget.LinearLayout
 
 private lateinit var addDialog: androidx.appcompat.app.AlertDialog
 private lateinit var removeDialog: androidx.appcompat.app.AlertDialog
+private lateinit var tagDialog:androidx.appcompat.app.AlertDialog
 private var isImageFitToScreen: Boolean = false
 
 
@@ -55,6 +56,7 @@ private var isImageFitToScreen: Boolean = false
         View.OnLongClickListener{
             val titleTextView: TextView = v.findViewById(R.id.inner_item_title) //TODO: Rename this to title
             val imageView: ImageView = v.findViewById(R.id.imageView)
+
             //TODO: Add more properties to the item_view.xml    DONE
             //TODO: Add a url property to the KoffeeModel and consume that in the onBindViewAdapter instead of the hard coded url
             val descriptionTextView: TextView = v.findViewById(R.id.itemDescription) //Possibly rename to description??
@@ -68,8 +70,20 @@ private var isImageFitToScreen: Boolean = false
                 imageView.setOnClickListener {showImage()}
                 v.setOnClickListener(this)
                 v.setOnLongClickListener(this)
+                tagTextView.setOnClickListener {buildDialog(tagTextView)}
 
 
+            }
+            fun buildDialog(p0: TextView) {
+                showTagDialog("Tags", p0)
+            }
+            fun showTagDialog(title: String, p0: View?) {
+                val dialogBuild = androidx.appcompat.app.AlertDialog.Builder(p0!!.getContext())
+                    .setTitle(title)
+                    .setMessage(innerDisplayArray.get(bindingAdapterPosition).tag)
+                    .setPositiveButton("OK", null)
+                    tagDialog = dialogBuild.create()
+                tagDialog.show()
             }
 
             fun showImage(){
