@@ -63,7 +63,7 @@ private var isImageFitToScreen: Boolean = false
             val addDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(parent.context)
 
             val inHold = inItem
-
+            val view : View = v
             init {
                 imageView.setOnClickListener {showImage()}
                 v.setOnClickListener(this)
@@ -75,8 +75,15 @@ private var isImageFitToScreen: Boolean = false
                 if(isImageFitToScreen) {
                     isImageFitToScreen = false;
                     imageView.setLayoutParams(RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT), );
+                        RelativeLayout.LayoutParams.WRAP_CONTENT));
+                    val params: ViewGroup.MarginLayoutParams = imageView!!.layoutParams as ViewGroup.MarginLayoutParams
+                    val factor =  view.context.resources.displayMetrics.density
+                    params.topMargin = (20 * factor).toInt()
+                    params.width = (129 * factor).toInt()
+                    params.height = (120 * factor).toInt()
+
                     imageView.setAdjustViewBounds(true);
+
                 }
                 else{
                     isImageFitToScreen = true
