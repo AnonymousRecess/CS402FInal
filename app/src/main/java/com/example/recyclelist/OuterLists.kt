@@ -52,7 +52,9 @@ public class OuterLists : AppCompatActivity(), View.OnClickListener {
     private lateinit var outRecyclerView: RecyclerView
     private lateinit var alertDialog: AlertDialog
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var mDriveServiceHelper : DriveServiceHelper
+    companion object {
+        lateinit var mDriveServiceHelper: DriveServiceHelper
+    }
     val outerList = OuterModel() //TODO Create OuterModel class
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -85,6 +87,7 @@ public class OuterLists : AppCompatActivity(), View.OnClickListener {
                         Log.i("TAG",
                             "onFailure of Folder creation: " + e.message)
                     })
+
             }
 
         })
