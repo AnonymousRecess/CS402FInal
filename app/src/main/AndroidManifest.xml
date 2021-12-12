@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.recyclelist">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycleList">
         <activity
-            android:name=".OuterLists"
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +23,10 @@
         </activity>
         <activity
             android:name=".InnerLists"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".OuterLists"
             android:exported="true">
         </activity>
     </application>
